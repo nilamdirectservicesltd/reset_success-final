@@ -3,7 +3,192 @@
 <head>
   <meta charset="utf-8">
   <title>Password Reset Successful</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Global styles */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #006A71;
+    }
+
+    /* Video background styles */
+    #myVideo {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      opacity: 0.7;
+      object-fit: cover;
+    }
+
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    .container {
+      background-color: rgba(242, 239, 231, 0.9);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      transform-style: preserve-3d;
+      transition: all 0.5s ease;
+      margin-bottom: 30px;
+    }
+
+    .container:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .green-tick {
+      width: 100px;
+      height: 100px;
+      border: 4px solid #48A6A7;
+      border-radius: 50%;
+      padding: 15px;
+      background-color: #F2EFE7;
+      margin: 0 auto 20px;
+      animation: bounceIn 1s ease-out, pulse 2s infinite 1s;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 20px 0;
+      color: #006A71;
+      padding: 15px 25px;
+      background-color: #F2EFE7;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 106, 113, 0.1);
+      transform-origin: center;
+      animation: slideIn 0.8s ease-out;
+    }
+
+    p {
+      font-size: 18px;
+      color: #006A71;
+      margin: 15px 0;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    p:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    p:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    .login_link {
+      display: inline-block;
+      color: #F2EFE7;
+      background-color: #48A6A7;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 12px 30px;
+      border-radius: 30px;
+      transition: all 0.4s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      font-weight: 500;
+      border: 2px solid #F2EFE7;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.9s forwards;
+    }
+
+    .login_link:hover {
+      background-color: #006A71;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+    }
+
+    /* Keyframe animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from { 
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes bounceIn {
+      0% { 
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      50% { 
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      70% { 
+        transform: scale(0.9);
+      }
+      100% { 
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .container {
+        padding: 30px 20px;
+      }
+      
+      h1 {
+        font-size: 24px;
+        padding: 12px 20px;
+      }
+      
+      p {
+        font-size: 16px;
+      }
+      
+      .green-tick {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Video background -->
@@ -23,6 +208,27 @@
     <!-- "Back to NDS" link -->
     <a href="https://gamma.app/public/NDS-Introduction-mspcieom2rz43su?mode=doc" class="login_link">Back to NDS</a>
   </div>
-  <script src="main.js"></script>
+
+  <script>
+    // Additional smooth scroll and animation triggers
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add a slight delay to the video appearance for smoother loading
+      const video = document.getElementById('myVideo');
+      video.style.opacity = '0';
+      setTimeout(() => {
+        video.style.transition = 'opacity 1.5s ease';
+        video.style.opacity = '0.7';
+      }, 300);
+
+      // Add hover effects to container
+      const container = document.querySelector('.container');
+      container.addEventListener('mouseenter', () => {
+        container.style.transform = 'translateY(-5px) scale(1.01)';
+      });
+      container.addEventListener('mouseleave', () => {
+        container.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+  </script>
 </body>
 </html>
